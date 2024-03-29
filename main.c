@@ -26,7 +26,7 @@ int main() {
         bloodPressure();
         break;
     case 3:
-        printf("test 3");
+        riskScore();
         break;
     default:
         break;
@@ -123,31 +123,82 @@ void riskScore(){
     printf("What is your Chrolesterol level?\n");
     scanf("%lf", &cholesterol);
 
-    printf("Are you Male or Female? (1 = Male | 2 = Female \n");
+    printf("Are you Male or Female? (1 = Male | 2 = Female) \n");
     scanf("%d", &gender);
 
-    printf("Are you a Smoker? (1 = Yes | 2 = No \n");
+    printf("Are you a Smoker? (1 = Yes | 2 = No) \n");
     scanf("%d", &smoker);
 
-    printf("Are you a Diabetic? (1 = Yes | 2 = No \n");
+    printf("Are you a Diabetic? (1 = Yes | 2 = No) \n");
     scanf("%d", &diabetic);
 
 
 
     if (age <= 39 || gender == 2 && age <=49 ){
-
+        printf("Your ERICE risk score category is Low");
     }
     else if(age <= 49){
-        if (diabetic == 2)
+        if (diabetic == 2) // non
         {
             if(smoker == 2){
                 printf("Your ERICE risk score category is Low");
             }
             else{
-                if(sbp){
-
+                if(5.2 < cholesterol && sbp < 180 || 6.5 <= cholesterol && sbp < 160){
+                    printf("Your ERICE risk score category is Mild");
+                }
+                else{
+                    printf("Your ERICE risk score category is Low");
                 }
             }
+        }
+        else{
+            if( sbp > 180 || smoker == 1 && sbp > 140 || smoker == 2 && cholesterol >= 6.5 ){
+                printf("Your ERICE risk score category is Mild");
+            }
+            else{
+                printf("Your ERICE risk score category is Low");
+            }
+            
+        }
+
+    }
+    else if(age <= 59){
+        if (diabetic == 2) // non
+        {
+            if(gender == 2){
+                if(diabetic == 2 && smoker == 2 || sbp < 180){
+                    printf("Your ERICE risk score category is Mild");
+                }
+                else{
+                    printf("Your ERICE risk score category is Moderate");
+
+                }
+
+            }
+
+
+
+            if(smoker == 2){
+                printf("Your ERICE risk score category is Low");
+            }
+            else{
+                if(5.2 < cholesterol && sbp < 180 || 6.5 <= cholesterol && sbp < 160){
+                    printf("Your ERICE risk score category is Mild");
+                }
+                else{
+                    printf("Your ERICE risk score category is Low");
+                }
+            }
+        }
+        else{
+            if( sbp > 180 || smoker == 1 && sbp > 140 || smoker == 2 && cholesterol >= 6.5 ){
+                printf("Your ERICE risk score category is Mild");
+            }
+            else{
+                printf("Your ERICE risk score category is Low");
+            }
+            
         }
 
     }
